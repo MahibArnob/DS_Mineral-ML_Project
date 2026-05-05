@@ -120,14 +120,14 @@ with tab_explorer:
             hover_data=["name", "formula", "crystal_system", "industry_application"],
             color="industry_application"
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with c2:
         st.subheader("Industry Distribution")
         vc = f["industry_application"].value_counts().reset_index()
         vc.columns = ["industry_application", "count"]
         fig2 = px.bar(vc, x="industry_application", y="count")
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width="stretch")
 
     # Heatmap: Elements vs Industry
     st.subheader("Element vs Industry Heatmap")
@@ -143,13 +143,13 @@ with tab_explorer:
             aspect="auto",
             color_continuous_scale="Viridis"
         )
-        st.plotly_chart(fig_heat, use_container_width=True)
+        st.plotly_chart(fig_heat, width="stretch")
     else:
         st.info("No data available for the heatmap.")
 
     st.subheader("Mineral Table")
     show_cols = ["id", "name", "formula", "crystal_system", "transparency_simple", "avg_hardness", "avg_density", "industry_application"]
-    st.dataframe(f[show_cols], use_container_width=True, height=350)
+    st.dataframe(f[show_cols], width="stretch", height=350)
 
     st.subheader("Predict Using Trained Models")
     if len(f) == 0:
